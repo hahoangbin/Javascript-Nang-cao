@@ -1,52 +1,33 @@
-// # Closure 
+// console.log(age)
+// console.log(fullName)
 
-// là một hàm có thể ghi nhớ nơi nó được tạo và truy cập được biến ở bên ngoài phạm vi của nó 
+// var age = 13
 
-// ## Ứng dụng 
-// - Viết code ngắn gọn hơn 
-// - Biểu diễn, ứng dụng tính Private trong OOP
+// console.log(sum(6, 9 ))
 
-// ## Tóm tắt 
-
-// ## Lưu ý
-// - Biến được tham chiếu (refer) trong closure sẽ không được xóa khỏi bộ nhớ khi hàm cha thực thi xong 
-// - Các khái niệm javascript nâng cao rất rễ gây hiểu nhầm 
-
-// function createLogger(namespace) {
-//     function logger(message) {
-//         console.log(`[${namespace}] ${message}`)
-//     }
-//     return logger
+// function sum(a, b) {
+//     return a + b
 // }
 
-function createStorage(key){
-    const store = JSON.parse(localStorage.getItem(key)) ?? {}
 
-    const save = () => {
-        localStorage.setItem(key, JSON.stringify(store))
+
+// let/const
+
+// {
+//     console.log(fullName)
+//     let fullName = 'Nguyeen thanh minh'
+// }
+
+const counter1 = makeCounter()
+
+ console.log(counter1())
+
+ function makeCounter() {
+    let counter = 0
+
+    return increase
+
+    function increase() {
+        return ++counter
     }
-
-    const storage = {
-        get(key) {
-            return store[key]
-        },
-        set(key, value) {
-            store[key] = value
-            save()
-        },
-        remove(key) {
-            delete store[key]
-            save()
-        }
-    }
-
-    return storage
-}
-
-const profileSetting = createStorage('profile_setting')
-
-console.log(profileSetting.get('fullName'))
-
-profileSetting.set('fullName', 'sown dawng')
-profileSetting.set('age', 18)
-profileSetting.set('address', 'ha noi')
+ }
